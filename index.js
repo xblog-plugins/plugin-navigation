@@ -3,9 +3,13 @@ const router =xBlog.router
 const database =xBlog.database
 const net =xBlog.net
 const tools =xBlog.tools
+const widget = xBlog.widget
+
+// todo 记得加上图片字段
 
 // 一些字段
 const dbNavigation = "navigation"
+const keyBackground = "animation_img"
 
 // 获取所有项目
 router.registerRouter("GET","/links",function(context){
@@ -73,5 +77,29 @@ router.registerRouter("GET","/keyword",function(context){
         })
     } else {
         router.response.ResponseBadRequest(context,"关键词不能为空")
+    }
+})
+
+// 注册我的导航接口
+widget.addPage({
+    background: tools.getSetting(keyBackground),
+    file:"index.html",
+    headMeta: {
+        title: "个人导航",
+    },
+    css: ["element"],
+    script: ["vue","element","jquery"],
+    url: "",
+    full: false,
+    side: false
+},function (){
+    let db = database.newDb(dbDouBan)
+    // 友链设置
+    return {
+        movie: db.GetCount({"item_type":"movie"}),
+        book: db.GetCount({"item_type":"book"}),
+        music: db.GetCount({"item_type":"music"}),
+        last: tools.getSetting(keyLastUpdate),
+        talk
     }
 })
