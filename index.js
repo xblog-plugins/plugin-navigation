@@ -93,13 +93,8 @@ widget.addPage({
     full: false,
     side: false
 },function (){
-    let db = database.newDb(dbDouBan)
-    // 友链设置
+    // let db = database.newDb(dbDouBan)
     return {
-        movie: db.GetCount({"item_type":"movie"}),
-        book: db.GetCount({"item_type":"book"}),
-        music: db.GetCount({"item_type":"music"}),
-        last: tools.getSetting(keyLastUpdate),
-        talk
+        server: '/plugins/static/navigation'
     }
 })
