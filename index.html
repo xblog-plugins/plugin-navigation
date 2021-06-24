@@ -38,7 +38,7 @@
     .wd-search .box div{width:100%;height:37px;display:block;margin:10px auto 30px;position:relative}
     .wd-search .box button{padding:0;margin:0;border:none;outline:0;background:0 0}
     .wd-search .box div .wd{width:100%;height:100%;display:block;border:1px solid #ddd;border-radius:5px;line-height:100%;font-size:15px;text-indent:7px;transition:.3s all}
-    .wd-search .box div button{width:40px;height:40px;display:block;position:absolute;z-index:10;right:6px;top:3px;cursor:pointer;font-size:22px;line-height:40px;border-radius:50%;color:#777}
+    .wd-search .box div button{width:40px;height:40px;display:block;position:absolute;z-index:10;right:6px;top:0;cursor:pointer;font-size:22px;line-height:40px;border-radius:50%;color:#777}
     .wd-search .box #icon-sousuo{width:20px;height:20px;vertical-align:-.15em;fill:currentColor;overflow:hidden}
     #app{display:flex;justify-content:center}
     .navigation-content{width:80%;}
@@ -54,7 +54,7 @@
     .site_list .section-list{margin-top:8px;display:flex;flex-wrap:wrap}
     .site_list .section-item{margin:10px 0;position:relative;padding:0 5px;box-sizing:border-box;display:block;overflow:hidden;border:1px solid transparent}
     .site_list .section-item .link{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .cate-item{box-sizing:border-box;position:relative;page-break-inside:avoid;-moz-column-break-inside:avoid;break-inside:avoid;counter-increment:item-counter;height:100%;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;border-left:1px solid #e5e5e5;padding:20px 10px 0}
+    .cate-item{box-sizing:border-box;position:relative;page-break-inside:avoid;-moz-column-break-inside:avoid;break-inside:avoid;counter-increment:item-counter;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;border-left:1px solid #e5e5e5;padding:20px 10px 0}
     .cate-item .title{background:linear-gradient(to right,#f2f2f2,rgba(222,222,222,0));display:flex;align-items:center}
     .cate-item .title .line{width:5px;height:32px;background:#78be40;display:inline-block}
     .cate-item .title span{color:#78be40;font-size:15px;font-weight:bolder;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;margin-left:10px;padding-top:5px;display:block;line-height:30px}
@@ -155,8 +155,8 @@
                                     <div class="section-list clearfix">
                                         <div v-for="(item2,index2) in item.child" :key="index2" class="section-item">
                                             <div class="link">
-                                                <a :href="item2.url" target="_blank" :title="item2.name">
-                                                    <div class="link-ico"><img :src="'https://favicon.link/v2/ico.php?url='+item2.url" alt :title="item2.name"></div>
+                                                <a :href="item2.color" target="_blank" :title="item2.name">
+                                                    <div class="link-ico"><img :src="'https://ico.di8du.com/get.php?url='+item2.color" alt :title="item2.name"></div>
                                                     <span class="title">${ item2.name }</span>
                                                 </a>
                                             </div>
@@ -307,6 +307,10 @@
                 // })
             },
         },
+        mounted(){
+            xy.net.server="/api/v3/"
+            this.getAllSite()
+        },
         methods: {
             changeItem (item) { // 切换搜索内容
                 this.now = item
@@ -359,6 +363,11 @@
             },
             handleClick () {
                 //
+            },
+            getAllSite(){
+                xy.net.request("plugins/navigation/links","GET",{}).then((data)=>{
+                    this.navigations = data
+                })
             }
         }
     });
