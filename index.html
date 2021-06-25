@@ -12,7 +12,7 @@
     .m-shortcut-panel .item a{overflow:hidden;display:block;width:80px;height:85px;border-radius:2px;padding-top:10px;padding-bottom:0;margin:0 auto;text-align:center;position:relative}
     .m-shortcut-panel .item a .icon,.m-shortcut-panel .item a img{border-radius:8px;display:block;margin:0 auto;width:54px;height:54px;font-size:24px;transition:.2s all ease-out;text-align:center;overflow:hidden;text-decoration:none;position:relative}
     .m-shortcut-panel .item a .title{color:#222;position:absolute;bottom:0;left:0;right:0;text-align:center;display:block;line-height:24px;height:24px;font-size:13px;width:100%;border-radius:12px}
-    .m-shortcut-panel .item a:hover .icon,.m-shortcut-panel .item a:hover img{margin-top:-6px;-webkit-filter:drop-shadow(0 6px 6px rgba(100,100,100,.6));filter:drop-shadow(0 6px 6px 0 rgba(100,100,100,.3))}
+    .m-shortcut-panel .item a:hover .icon,.m-shortcut-panel .item a:hover img{margin-top:-6px;-webkit-filter:drop-shadow(0 6px 6px rgba(100,100,100,.6));filter:drop-shadow(0 6px 6px rgba(100,100,100,.3))}
     li,ul{list-style:none}
 
 
@@ -180,88 +180,21 @@
         el: '#app',
         delimiters: ['${', '}'],
         data () {
-            const web = [
-                { name: '百度搜索', img: server+'/images/baidu.png', url: 'https://www.baidu.com/s?wd=%s', tip: '请输入关键词进行搜索' },
-                { name: '谷歌搜索', img: server+'/images/google.png', url: 'https://www.google.com.hk/search?q=%s', tip: '请输入关键词进行搜索' },
-                { name: 'bing搜索', img: server+'/images/bing.png', url: 'https://www.bing.com/search?q=%s', tip: '请输入关键词进行搜索' },
-                { name: '搜狗搜索', img: server+'/images/sogou.png', url: 'https://www.sogou.com/web?query=%s', tip: '请输入关键词进行搜索' },
-                { name: '360搜索', img: server+'/images/360.png', url: 'https://www.so.com/s?q=%s', tip: '请输入关键词进行搜索' },
-                { name: 'DuckDuckGo', img: server+'/images/duckduckgo.png', url: 'https://duckduckgo.com?q=%s', tip: '请输入关键词进行搜索' }
-            ]
+            const web=[{name:'百度搜索',img:server+'/images/baidu.png',url:'https://www.baidu.com/s?wd=%s',tip:'请输入关键词进行搜索'},{name:'谷歌搜索',img:server+'/images/google.png',url:'https://www.google.com.hk/search?q=%s',tip:'请输入关键词进行搜索'},{name:'bing搜索',img:server+'/images/bing.png',url:'https://www.bing.com/search?q=%s',tip:'请输入关键词进行搜索'},{name:'搜狗搜索',img:server+'/images/sogou.png',url:'https://www.sogou.com/web?query=%s',tip:'请输入关键词进行搜索'},{name:'360搜索',img:server+'/images/360.png',url:'https://www.so.com/s?q=%s',tip:'请输入关键词进行搜索'},{name:'DuckDuckGo',img:server+'/images/duckduckgo.png',url:'https://duckduckgo.com?q=%s',tip:'请输入关键词进行搜索'}]
             // 视频搜索引擎
-            const video = [
-                { name: '哔哩哔哩', img: server+'/images/bilibili.png', url: 'https://search.bilibili.com/all?keyword=%s', tip: '请输入关键词进行搜索' },
-                { name: 'AcFun', img: server+'/images/acfun.png', url: 'https://www.acfun.cn/search?keyword=%s', tip: '请输入关键词进行搜索' },
-                { name: 'niconico', img: server+'/images/niconico.svg', url: 'https://www.nicovideo.jp/search/%s', tip: '请输入关键词进行搜索' },
-                { name: 'DiliDili', img: server+'/images/dilidili.png', url: 'http://dilidili.online/search?q=%s', tip: '请输入关键词进行搜索' },
-                { name: 'YouTub', img: server+'/images/youtub.png', url: 'https://www.youtube.com/results?search_query=%s', tip: '请输入关键词进行搜索' },
-                { name: '网易公开课', img: server+'/images/wangyi.png', url: 'https://open.163.com/newview/search?query=%s', tip: '请输入关键词进行搜索' },
-                { name: '腾讯视频', img: server+'/images/tencent.png', url: 'https://v.qq.com/x/search/?q=%s', tip: '请输入关键词进行搜索' },
-                { name: '爱奇艺', img: server+'/images/aiqiyi.png', url: 'https://so.iqiyi.com/so/q_%s', tip: '请输入关键词进行搜索' },
-                { name: '优酷', img: server+'/images/youku.png', url: 'https://so.youku.com/search_video/q_%s', tip: '请输入关键词进行搜索' }
-            ]
+            const video=[{name:'哔哩哔哩',img:server+'/images/bilibili.png',url:'https://search.bilibili.com/all?keyword=%s',tip:'请输入关键词进行搜索'},{name:'AcFun',img:server+'/images/acfun.png',url:'https://www.acfun.cn/search?keyword=%s',tip:'请输入关键词进行搜索'},{name:'niconico',img:server+'/images/niconico.svg',url:'https://www.nicovideo.jp/search/%s',tip:'请输入关键词进行搜索'},{name:'DiliDili',img:server+'/images/dilidili.png',url:'http://dilidili.online/search?q=%s',tip:'请输入关键词进行搜索'},{name:'YouTub',img:server+'/images/youtub.png',url:'https://www.youtube.com/results?search_query=%s',tip:'请输入关键词进行搜索'},{name:'网易公开课',img:server+'/images/wangyi.png',url:'https://open.163.com/newview/search?query=%s',tip:'请输入关键词进行搜索'},{name:'腾讯视频',img:server+'/images/tencent.png',url:'https://v.qq.com/x/search/?q=%s',tip:'请输入关键词进行搜索'},{name:'爱奇艺',img:server+'/images/aiqiyi.png',url:'https://so.iqiyi.com/so/q_%s',tip:'请输入关键词进行搜索'},{name:'优酷',img:server+'/images/youku.png',url:'https://so.youku.com/search_video/q_%s',tip:'请输入关键词进行搜索'}]
             // 社区
-            const community = [
-                { name: '百度贴吧', img: server+'/images/tieba.png', url: 'http://tieba.baidu.com/f/search/res?ie=utf-8&qw=%s', tip: '请输入关键词进行搜索' },
-                { name: '吾爱破解', img: server+'/images/52.png', url: 'http://zhannei.baidu.com/cse/site?q=%s', tip: '请输入关键词进行搜索' },
-                { name: '游侠网', img: server+'/images/youxia.png', url: 'https://so.ali213.net/s/c?keyword=%s', tip: '请输入关键词进行搜索' },
-                { name: 'StackOverflow', img: server+'/images/stackoverflow.png', url: 'https://stackoverflow.com/search?q=%s', tip: '请输入关键词进行搜索' },
-                { name: '知乎', img: server+'/images/zhihu.png', url: 'https://www.zhihu.com/search?q=%s', tip: '请输入关键词进行搜索' },
-                { name: '掘金', img: server+'/images/juejin.png', url: 'https://juejin.im/search?query=%s&type=all', tip: '请输入关键词进行搜索' },
-                { name: '思否', img: server+'/images/sifou.png', url: 'https://segmentfault.com/search?q=%s', tip: '请输入关键词进行搜索' },
-                { name: 'CSDN', img: server+'/images/csdn.png', url: 'https://so.csdn.net/so/search/s.do?q=%s', tip: '请输入关键词进行搜索' }
-            ]
+            const community=[{name:'百度贴吧',img:server+'/images/tieba.png',url:'http://tieba.baidu.com/f/search/res?ie=utf-8&qw=%s',tip:'请输入关键词进行搜索'},{name:'吾爱破解',img:server+'/images/52.png',url:'http://zhannei.baidu.com/cse/site?q=%s',tip:'请输入关键词进行搜索'},{name:'游侠网',img:server+'/images/youxia.png',url:'https://so.ali213.net/s/c?keyword=%s',tip:'请输入关键词进行搜索'},{name:'StackOverflow',img:server+'/images/stackoverflow.png',url:'https://stackoverflow.com/search?q=%s',tip:'请输入关键词进行搜索'},{name:'知乎',img:server+'/images/zhihu.png',url:'https://www.zhihu.com/search?q=%s',tip:'请输入关键词进行搜索'},{name:'掘金',img:server+'/images/juejin.png',url:'https://juejin.im/search?query=%s&type=all',tip:'请输入关键词进行搜索'},{name:'思否',img:server+'/images/sifou.png',url:'https://segmentfault.com/search?q=%s',tip:'请输入关键词进行搜索'},{name:'CSDN',img:server+'/images/csdn.png',url:'https://so.csdn.net/so/search/s.do?q=%s',tip:'请输入关键词进行搜索'}]
             // 图片
-            const image = [
-                { name: '百度图片', img: server+'/images/baiduimg.png', url: 'https://image.baidu.com/search/index?tn=baiduimage&word=%s', tip: '请输入关键词进行搜索' },
-                { name: '谷歌图片', img: server+'/images/google.png', url: 'https://www.google.com.hk/search?q=%s&tbm=isch', tip: '请输入关键词进行搜索' },
-                { name: 'Pixiv', img: server+'/images/pixiv.svg', url: 'https://www.pixiv.net/tags/%s/artworks', tip: '请输入关键词进行搜索' },
-                { name: 'Bing图片', img: server+'/images/bing.png', url: 'https://www.bing.com/images/search?q=%s', tip: '请输入关键词进行搜索' },
-                { name: '花瓣', img: server+'/images/huaban.png', url: 'https://huaban.com/search/?q=%s', tip: '请输入关键词进行搜索' },
-                { name: 'Flickr', img: server+'/images/flickr.png', url: 'https://www.flickr.com/search/?text=%s', tip: '请输入关键词进行搜索' },
-                { name: 'Picsearch', img: server+'/images/picsearch.png', url: 'https://cn.picsearch.com/index.cgi?q=%s', tip: '请输入关键词进行搜索' }
-            ]
+            const image=[{name:'百度图片',img:server+'/images/baiduimg.png',url:'https://image.baidu.com/search/index?tn=baiduimage&word=%s',tip:'请输入关键词进行搜索'},{name:'谷歌图片',img:server+'/images/google.png',url:'https://www.google.com.hk/search?q=%s&tbm=isch',tip:'请输入关键词进行搜索'},{name:'Pixiv',img:server+'/images/pixiv.svg',url:'https://www.pixiv.net/tags/%s/artworks',tip:'请输入关键词进行搜索'},{name:'Bing图片',img:server+'/images/bing.png',url:'https://www.bing.com/images/search?q=%s',tip:'请输入关键词进行搜索'},{name:'花瓣',img:server+'/images/huaban.png',url:'https://huaban.com/search/?q=%s',tip:'请输入关键词进行搜索'},{name:'Flickr',img:server+'/images/flickr.png',url:'https://www.flickr.com/search/?text=%s',tip:'请输入关键词进行搜索'},{name:'Picsearch',img:server+'/images/picsearch.png',url:'https://cn.picsearch.com/index.cgi?q=%s',tip:'请输入关键词进行搜索'}]
             // 音乐
-            const music = [
-                { name: '网易云音乐', img: server+'/images/music126.png', url: 'https://music.163.com/#/search/m/?s=%s', tip: '请输入关键词进行搜索' },
-                { name: 'QQ音乐', img: server+'/images/qqmusic.png', url: 'https://y.qq.com/portal/search.html?w=%s', tip: '请输入关键词进行搜索' },
-                { name: '酷狗音乐', img: server+'/images/kugou.png', url: 'https://www.kugou.com/yy/html/search.html?searchKeyWord=%s', tip: '请输入关键词进行搜索' },
-                { name: '酷我音乐', img: server+'/images/kuwo.png', url: 'http://www.kuwo.cn/search/list?key=%s', tip: '请输入关键词进行搜索' },
-                { name: '虾米音乐', img: server+'/images/xiami.png', url: 'https://www.xiami.com/list?scene=search&type=song&query={"searchKey":"%s"}', tip: '请输入关键词进行搜索' }
-            ]
+            const music=[{name:'网易云音乐',img:server+'/images/music126.png',url:'https://music.163.com/#/search/m/?s=%s',tip:'请输入关键词进行搜索'},{name:'QQ音乐',img:server+'/images/qqmusic.png',url:'https://y.qq.com/portal/search.html?w=%s',tip:'请输入关键词进行搜索'},{name:'酷狗音乐',img:server+'/images/kugou.png',url:'https://www.kugou.com/yy/html/search.html?searchKeyWord=%s',tip:'请输入关键词进行搜索'},{name:'酷我音乐',img:server+'/images/kuwo.png',url:'http://www.kuwo.cn/search/list?key=%s',tip:'请输入关键词进行搜索'},{name:'虾米音乐',img:server+'/images/xiami.png',url:'https://www.xiami.com/list?scene=search&type=song&query={"searchKey":"%s"}',tip:'请输入关键词进行搜索'}]
             // 百科
-            const baiKe = [
-                { name: '萌娘百科', img: server+'/images/mennian.png', url: 'https://zh.moegirl.org/index.php?search=%s', tip: '请输入关键词进行搜索' },
-                { name: '维基百科', img: server+'/images/wiki.png', url: 'https://zh.wikipedia.org/wiki/%s', tip: '请输入关键词进行搜索' },
-                { name: '百度百科', img: server+'/images/baidubaike.png', url: 'https://baike.baidu.com/search?word=%s&enc=utf8', tip: '请输入关键词进行搜索' },
-                { name: 'KomicaWiKi', img: server+'/images/komica.png', url: 'https://wiki.komica.org/index.php?search=%s', tip: '请输入关键词进行搜索' }
-            ]
+            const baiKe=[{name:'萌娘百科',img:server+'/images/mennian.png',url:'https://zh.moegirl.org/index.php?search=%s',tip:'请输入关键词进行搜索'},{name:'维基百科',img:server+'/images/wiki.png',url:'https://zh.wikipedia.org/wiki/%s',tip:'请输入关键词进行搜索'},{name:'百度百科',img:server+'/images/baidubaike.png',url:'https://baike.baidu.com/search?word=%s&enc=utf8',tip:'请输入关键词进行搜索'},{name:'KomicaWiKi',img:server+'/images/komica.png',url:'https://wiki.komica.org/index.php?search=%s',tip:'请输入关键词进行搜索'}]
             // 翻译
-            const translate = [
-                { name: '谷歌翻译', img: server+'/images/google.png', url: 'https://translate.google.cn/#view=home&op=translate&sl=zh-CN&tl=en&text=%s', tip: '请输入中文,翻译结果为英文' },
-                { name: '有道翻译', img: server+'/images/youdao.png', url: 'https://dict.youdao.com/search?q=%s', tip: '请输入中文,翻译结果为英文' },
-                { name: '百度翻译', img: server+'/images/baidutranslate.png', url: 'https://fanyi.baidu.com/#zh/en/%s', tip: '请输入中文,翻译结果为英文' }
-
-            ]
+            const translate=[{name:'谷歌翻译',img:server+'/images/google.png',url:'https://translate.google.cn/#view=home&op=translate&sl=zh-CN&tl=en&text=%s',tip:'请输入中文,翻译结果为英文'},{name:'有道翻译',img:server+'/images/youdao.png',url:'https://dict.youdao.com/search?q=%s',tip:'请输入中文,翻译结果为英文'},{name:'百度翻译',img:server+'/images/baidutranslate.png',url:'https://fanyi.baidu.com/#zh/en/%s',tip:'请输入中文,翻译结果为英文'}]
             // 顶部的图标
-            const topWeb = [
-                { name: '小游网', img: server+'/images/top/xiaoyou.png', url: 'https://xiaoyou66.com' },
-                { name: '哔哩哔哩', img: server+'/images/top/bilibili.jpg', url: 'https://www.bilibili.com/' },
-                { name: 'Steam', img: server+'/images/top/steam.jpg', url: 'https://store.steampowered.com/' },
-                { name: '动漫之家', img: server+'/images/top/donman.png', url: 'https://www.dmzj.com/' },
-                { name: 'Pixiv', img: server+'/images/top/pixiv.jpg', url: 'https://www.pixiv.net/' },
-                { name: '网易云音乐', img: server+'/images/top/music163.jpg', url: 'https://music.163.com/' },
-                { name: '轻之文库', img: server+'/images/top/qing.jpg', url: 'https://www.linovel.net/' },
-                { name: '番组计划', img: server+'/images/top/fanzu.jpg', url: 'https://bangumi.tv/' },
-                { name: '萌娘百科', img: server+'/images/top/meng.webp', url: 'https://zh.moegirl.org/Mainpage' }
-            ]
-            // 网页搜索引擎
-            // 获取所有的网站
-            // this.tools.requests(this, this.G.SERVER + '/api/v1/more/get/navigation/link', { }, 'get').then((response) => {
-            //   if (response != null && response.code === 100) {
-            //     Vue.set(this, 'webNavigation', response.data)
-            //   }
-            // })
+            const topWeb=[{name:'小游网',img:server+'/images/top/xiaoyou.png',url:'https://xiaoyou66.com'},{name:'哔哩哔哩',img:server+'/images/top/bilibili.jpg',url:'https://www.bilibili.com/'},{name:'Steam',img:server+'/images/top/steam.jpg',url:'https://store.steampowered.com/'},{name:'动漫之家',img:server+'/images/top/donman.png',url:'https://www.dmzj.com/'},{name:'Pixiv',img:server+'/images/top/pixiv.jpg',url:'https://www.pixiv.net/'},{name:'网易云音乐',img:server+'/images/top/music163.jpg',url:'https://music.163.com/'},{name:'轻之文库',img:server+'/images/top/qing.jpg',url:'https://www.linovel.net/'},{name:'番组计划',img:server+'/images/top/fanzu.jpg',url:'https://bangumi.tv/'},{name:'萌娘百科',img:server+'/images/top/meng.webp',url:'https://zh.moegirl.org/Mainpage'}]
             // 网址导航
             return {
                 web,
@@ -273,12 +206,7 @@
                 video,
                 nowChoose: web,
                 now: 'web',
-                topSearch: {
-                    name: '百度搜索',
-                    img: server+'/images/baidu.png',
-                    url: 'https://www.baidu.com/s?wd=%s',
-                    tip: '输入你想搜索的网页'
-                },
+                topSearch:{name:'百度搜索',img:server+'/images/baidu.png',url:'https://www.baidu.com/s?wd=%s',tip:'输入你想搜索的网页'},
                 searchText: '',
                 suggests: null,
                 show: false,
@@ -312,63 +240,17 @@
             this.getAllSite()
         },
         methods: {
-            changeItem (item) { // 切换搜索内容
-                this.now = item
-                // 切换不同的搜索内容
-                switch (item) {
-                    case 'web':
-                        this.nowChoose = this.web
-                        this.topSearch = this.web[0]
-                        break
-                    case 'video':
-                        this.nowChoose = this.video
-                        this.topSearch = this.video[0]
-                        break
-                    case 'community':
-                        this.nowChoose = this.community
-                        this.topSearch = this.community[0]
-                        break
-                    case 'img':
-                        this.nowChoose = this.image
-                        this.topSearch = this.image[0]
-                        break
-                    case 'music':
-                        this.nowChoose = this.music
-                        this.topSearch = this.music[0]
-                        break
-                    case 'book':
-                        this.nowChoose = this.baiKe
-                        this.topSearch = this.baiKe[0]
-                        break
-                    case 'translate':
-                        this.nowChoose = this.translate
-                        this.topSearch = this.translate[0]
-                        break
-                }
-            },
-            changeSearch (item) { // 修改搜索引擎
-                Vue.set(this, 'topSearch', item)
-                this.show = false
-            },
-            clickSuggest (item) { // 点击某一个关键词
-                this.searchText = item
-                const that = this
-                setTimeout(function () {
-                    that.suggests = null
-                }, 300)
-            },
-            openSearch (url) {
-                // 先替换字符串
-                window.open(url.replace('%s', this.searchText))
-            },
-            handleClick () {
-                //
-            },
-            getAllSite(){
-                xy.net.request("plugins/navigation/links","GET",{}).then((data)=>{
-                    this.navigations = data
-                })
-            }
+            // 切换搜索内容
+            changeItem(item){this.now=item;switch(item){case'web':this.nowChoose=this.web;this.topSearch=this.web[0];break; case'video':this.nowChoose=this.video;this.topSearch=this.video[0];break; case'community':this.nowChoose=this.community;this.topSearch=this.community[0];break; case'img':this.nowChoose=this.image;this.topSearch=this.image[0];break; case'music':this.nowChoose=this.music;this.topSearch=this.music[0];break; case'book':this.nowChoose=this.baiKe;this.topSearch=this.baiKe[0];break;case'translate':this.nowChoose=this.translate;this.topSearch=this.translate[0];break}},
+            // 修改搜索引擎
+            changeSearch(item){Vue.set(this,'topSearch',item);this.show=false},
+            // 点击某一个关键词
+            clickSuggest(item){this.searchText=item;const that=this;setTimeout(function(){that.suggests=null},300)},
+            // 打开网址
+            openSearch(url){window.open(url.replace('%s',this.searchText))},
+            handleClick () {},
+            // 获取所有的网站
+            getAllSite(){xy.net.request("plugins/navigation/links","GET",{}).then((data)=>{this.navigations=data})}
         }
     });
 </script>
