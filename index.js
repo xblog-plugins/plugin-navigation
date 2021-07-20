@@ -98,3 +98,61 @@ widget.addPage({
         server: '/plugins/static/navigation'
     }
 })
+
+// 添加设置界面
+widget.addSetting("网址管理",2,"navigation")
+
+// 管理员接口
+// 获取所有导航分类
+router.registerAdminRouter("GET","",function (context){
+    let db = database.newDb(dbNavigation)
+    db.FindMany({filter:{"parent":0},sort:{_id:-1}},function (err,data){
+        if (err == null){
+            let response = []
+            data.forEach(function (item){
+                // 只放入我们需要的值
+                response.push({
+                    id : item.navigation_id,
+                    name : item.name,
+                    color : item.value
+                })
+            })
+            // 返回数据
+            router.response.ResponseOk(context,response)
+        } else {
+            router.response.ResponseServerError(context,"获取个人导航失败")
+        }
+    })
+})
+
+// 获取导航分类下的网址
+router.registerAdminRouter("GET","/:id/links",function (context){
+    let db = database.newDb(dbNavigation)
+    let id = tools.str2int(context.Param("id"))
+    let pageId = tools.str2int(context.Query('page'))
+    let size = tools.str2int(context.Query('page_size'))
+    if (pageId===0) { pageId=1 }
+    if (size===0) { size=10 }
+    db.Paginate({filter: {parent:id},sort:{_id:-1}},pageId,size,function (err,page,total,data){
+        if (err==null){
+            tools.log(data)
+            let response = {
+                total_num: total,
+                total: page,
+                current: pageId,
+                contents: []
+            }
+            data.forEach(function (item){
+                response.contents.push({
+                    id : item.navigation_id,
+                    name : item.name,
+                    url : item.value,
+                    parent : item.parent,
+                })
+            })
+            router.response.ResponseOk(context,response)
+        } else {
+            router.response.ResponseServerError(context)
+        }
+    })
+})
