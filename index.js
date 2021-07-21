@@ -135,7 +135,6 @@ router.registerAdminRouter("GET","/:id/links",function (context){
     if (size===0) { size=10 }
     db.Paginate({filter: {parent:id},sort:{_id:-1}},pageId,size,function (err,page,total,data){
         if (err==null){
-            tools.log(data)
             let response = {
                 total_num: total,
                 total: page,
