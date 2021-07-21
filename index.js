@@ -156,3 +156,57 @@ router.registerAdminRouter("GET","/:id/links",function (context){
         }
     })
 })
+
+// 添加导航或者网址
+router.registerAdminRouter("POST","",function (context){
+    // 先获取请post请求的数据
+    let navigation = router.getPostJson(context)
+    // 验证关键字段是否为空
+    if (tools.verifyField(navigation.name) && tools.verifyField(navigation.value)) {
+        let data = {
+            name: navigation.name,
+            value: navigation.value,
+            parent: navigation.parent
+        }
+        // 插入数据
+        database.newDb(dbNavigation).InsertOneIncrease(data,"navigation_id",function (err,res){
+            // 判断是否插入成功
+            if (err==null){
+                router.response.ResponseCreated(context,data)
+            } else {
+                router.response.ResponseServerError(context)
+            }
+        })
+    } else {
+        router.response.ResponseBadRequest(context,"请检查名字、网址是否填写并正确！")
+    }
+})
+
+// 更新导航内容
+router.registerAdminRouter("PUT","/:id",function (context){
+    // 获取ID
+    let id = tools.str2int(context.Param("id"))
+    // 先获取请post请求的数据
+    let navigation = router.getPostJson(context)
+    // 验证关键字段是否为空
+    if (tools.verifyField(navigation.name) && tools.verifyField(navigation.value)) {
+        let data = {
+            name: navigation.name,
+            value: navigation.value,
+            parent: navigation.parent
+        }
+        database.newDb(dbNavigation).UpdateOne({filter:{"navigation_id": id},update: {"$set":data}},function (err,res){
+            if (!err){
+                router.response.ResponseCreated(context,data)
+            } else {
+                router.response.ResponseServerError(context)
+            }
+        })
+    }
+
+})
+
+// 删除导航
+router.registerAdminRouter("DELETE","/:id",function (context){
+    database.adminDelete(context,dbNavigation,"navigation_id")
+})
